@@ -1,0 +1,774 @@
+/* Import fonts - Pixel art style font and regular font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap');
+
+/* Global font setting */
+* {
+    font-family: 'Press Start 2P', cursive;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #8A2BE2; /* Vibrant purple */
+    --secondary-color: #32CD32; /* Lime green */
+    --accent-color: #FFD700; /* Gold */
+    --dark-color: #121212; /* Nearly black */
+    --light-color: #F0F8FF; /* Light blue-white */
+    --success-color: #4CAF50; /* Green */
+    --danger-color: #FF5252; /* Red */
+    --gray-color: #333333; /* Dark gray */
+    /* Leaderboard specific variables */
+    --table-header: #1a1a1a;
+    --table-row-hover: rgba(138, 43, 226, 0.1);
+}
+
+/* General Styling - Combined and Refined */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    display: flex; /* For leaderboard footer positioning */
+    flex-direction: column; /* For leaderboard footer positioning */
+    min-height: 100vh; /* For leaderboard footer positioning */
+}
+
+/* Adjusting headline sizes for better readability */
+h1 {
+    font-size: 2.5em;
+    line-height: 1.3;
+    letter-spacing: 1px;
+}
+
+h2 {
+    font-size: 2em;
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+h3 {
+    font-size: 1.4em;
+    line-height: 1.5;
+    letter-spacing: 1px;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+/* Header Styling (from student-homepage.css) */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: rgba(18, 18, 18, 0.95);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+}
+
+/* Logo and Navigation (from student-homepage.css) */
+.logo-nav {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-link {
+    color: var(--light-color);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+}
+
+.logo {
+    text-decoration: none;
+    color: var(--accent-color);
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.7);
+}
+
+/* Social and Auth (from student-homepage.css) */
+.auth-social {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Login Button Styling (from student-homepage.css) */
+.login-btn {
+    background-color: purple;
+    color: white;
+    border: 1px solid var(--light-color);
+    padding: 10px 24px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.login-btn:hover {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+/* Hamburger Menu Styles - improved version */
+.menu-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--light-color);
+    padding: 8px;
+    margin-left: 15px;
+    display: none; /* Initially hidden */
+    transition: all 0.3s ease;
+    z-index: 1010;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.menu-btn:hover {
+    transform: scale(1.1);
+    color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-btn.active {
+    color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.hamburger-menu {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Start off-screen */
+    width: 300px;
+    height: 100%;
+    background-color: rgba(17, 17, 17, 0.95); /* Slightly transparent background */
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy animation */
+    padding: 80px 0 0 0; /* Increased padding for content */
+    overflow-y: auto;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.7);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px); /* Add blur effect */
+}
+
+.hamburger-menu.show {
+    right: 0; /* Slide in */
+}
+
+.menu-item {
+    display: block;
+    padding: 20px 24px;
+    color: var(--light-color);
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    line-height: 1.6;
+    letter-spacing: 1px;
+}
+
+.menu-item:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background-color: var(--accent-color);
+    transform: translateX(-3px);
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--accent-color);
+    padding-left: 30px;
+}
+
+.menu-item:hover:before {
+    transform: translateX(0);
+}
+
+.menu-item i {
+    margin-right: 16px;
+    width: 20px;
+    text-align: center;
+    color: var(--accent-color);
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover i {
+    transform: scale(1.2);
+}
+
+/* Active menu item - add this class via JavaScript when on current page */
+.menu-item.active {
+    background-color: rgba(255, 215, 0, 0.1);
+    color: var(--accent-color);
+    padding-left: 30px;
+}
+
+.menu-item.active:before {
+    transform: translateX(0);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .menu-btn {
+        display: block;
+    }
+    
+    .hamburger-menu {
+        width: 100%;
+        right: -100%;
+    }
+}
+
+/* Show menu button for logged-in users */
+body.logged-in .menu-btn {
+    display: block;
+}
+
+/* Menu close button styling */
+.menu-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: var(--accent-color);
+    cursor: pointer;
+    z-index: 1002;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.menu-close:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: rotate(90deg);
+}
+
+/* Animation for menu items */
+.hamburger-menu .menu-item {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, padding-left 0.3s ease;
+}
+
+.hamburger-menu.show .menu-item {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Add staggered animation delay for menu items */
+.hamburger-menu .menu-item:nth-child(1) { transition-delay: 0.05s; }
+.hamburger-menu .menu-item:nth-child(2) { transition-delay: 0.1s; }
+.hamburger-menu .menu-item:nth-child(3) { transition-delay: 0.15s; }
+.hamburger-menu .menu-item:nth-child(4) { transition-delay: 0.2s; }
+.hamburger-menu .menu-item:nth-child(5) { transition-delay: 0.25s; }
+
+/* Footer Styling (from student-homepage.css) */
+footer {
+    background-color: #0F0F0F;
+    color: var(--light-color);
+    padding: 80px 5% 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-contact p {
+    margin: 5px 0;
+}
+
+.footer-contact p:first-child {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.footer-section h3 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 12px;
+}
+
+.footer-section ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 16px;
+}
+
+.footer-section ul li a:hover {
+    color: var(--accent-color);
+}
+
+.footer-copyright {
+    text-align: center;
+    padding-top: 30px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9em;
+}
+
+/* ============================================ */
+/* LEADERBOARD PAGE SPECIFIC STYLES START HERE */
+/* ============================================ */
+
+/* Main Container Styles for Leaderboard */
+.main-container {
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    padding-top: 80px;
+    width: 100%;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0 5%;
+    padding-top: 3rem;
+}
+
+/* Use h2 for leaderboard title for semantic structure? */
+.dashboard-header h1 /* or h2 if changed */ {
+    font-size: 2.2em;
+    color: var(--accent-color);
+    margin-bottom: 0.8rem;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+    line-height: 1.3;
+    padding-top: 1rem;
+}
+
+.dashboard-subtitle {
+    font-size: 1.1em;
+    color: var(--light-color);
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+/* Content Container for Leaderboard */
+.content-container {
+    background: rgba(30, 30, 30, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    margin: 0 5% 2rem 5%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Search Container */
+.search-container {
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+.search-bar {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--light-color);
+    font-family: 'Press Start 2P', cursive;
+}
+
+.search-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.search-button:hover {
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+}
+
+/* Search results info styling */
+.search-results-info {
+    background-color: rgba(138, 43, 226, 0.1);
+    border-left: 4px solid #8A2BE2;
+    padding: 10px 15px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    color: var(--light-color);
+    line-height: 1.5;
+}
+
+.search-results-info i {
+    margin-right: 10px;
+    color: #8A2BE2;
+}
+
+.reset-search {
+    margin-left: auto;
+    color: #8A2BE2;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 1em; /* Relative to parent */
+}
+
+.reset-search i {
+    margin-right: 5px;
+}
+
+.reset-search:hover {
+    text-decoration: underline;
+}
+
+#resultCount, #searchTerm {
+    font-weight: normal;
+    color: #8A2BE2;
+    padding: 0 4px;
+}
+
+/* Leaderboard info styling */
+.leaderboard-info {
+    margin: 10px 0;
+    padding: 10px 15px;
+    background-color: rgba(138, 43, 226, 0.05);
+    border-radius: 8px;
+    text-align: right;
+}
+
+.leaderboard-info p {
+    font-size: 1em;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.leaderboard-info .highlight {
+    color: #8A2BE2;
+    font-weight: normal;
+    padding: 0 4px;
+}
+
+/* Leaderboard Styling */
+.leaderboard-container {
+    overflow-x: auto;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.leaderboard-table th, .leaderboard-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.leaderboard-table th {
+    background-color: var(--table-header);
+    color: var(--accent-color);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.leaderboard-table tr:hover {
+    background-color: var(--table-row-hover);
+}
+
+/* Specific cell styling */
+.rank {
+    font-weight: normal;
+    width: 50px;
+    text-align: center;
+    font-size: 1em; /* Relative to parent TD */
+}
+
+.rank-1 {
+    color: #FFD700; /* Gold */
+}
+.rank-2 {
+    color: #C0C0C0; /* Silver */
+}
+.rank-3 {
+    color: #CD7F32; /* Bronze */
+}
+
+.student-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.student-info img {
+    width: 30px; /* Adjusted */
+    height: 30px; /* Adjusted */
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Current user highlight */
+.current-user {
+    background-color: rgba(138, 43, 226, 0.2) !important; /* Ensure override */
+    border-left: 4px solid #8A2BE2;
+}
+
+/* Pagination styling */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    gap: 15px;
+}
+
+.page-btn {
+    background-color: #8A2BE2;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background-color 0.3s;
+    font-family: 'Press Start 2P', cursive;
+    line-height: 1.4;
+}
+
+.page-btn:hover {
+    background-color: #7023BA;
+}
+
+.page-btn:disabled {
+    background-color: #555; /* Darker disabled */
+    color: #999;
+    cursor: not-allowed;
+}
+
+#pageInfo {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+#currentPage, #totalPages {
+    font-weight: normal;
+    color: #8A2BE2;
+    padding: 0 4px;
+}
+
+
+/* Responsive Styles - Combining and Refining */
+
+/* General Responsive Styles (from student-homepage.css) */
+@media (max-width: 992px) {
+    .dashboard-header h1 {
+        font-size: 1.8em;
+    }
+    
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.8em; }
+    h3 { font-size: 1.2em; }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px 5%;
+        flex-direction: column;
+        gap: 20px;
+        position: relative; /* Change from fixed for simplicity? */
+        width: 100%;
+    }
+    .logo-nav {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .nav-links {
+        display: none;
+    }
+    .menu-btn {
+        display: block; /* Ensure menu button shows */
+    }
+    .hamburger-menu {
+        width: 100%;
+        right: -100%;
+    }
+    .footer-top {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    /* General font size reduction */
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.2em; }
+    p, .menu-item, .nav-link { font-size: 14px; }
+
+    /* Leaderboard Specific Responsive */
+    .main-container {
+        padding-top: 20px; /* Adjust if header is not fixed */
+    }
+    .content-container {
+        padding: 1.5rem;
+    }
+    .search-container {
+        flex-direction: column;
+    }
+    .search-bar, .search-button {
+        border-radius: 4px;
+        width: 100%;
+    }
+    .search-button {
+        margin-top: 0.5rem;
+    }
+    .leaderboard-table th, .leaderboard-table td {
+        padding: 0.8rem;
+        font-size: 0.8em;
+    }
+    .student-info img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-header h1 {
+        font-size: 1.3em;
+    }
+    
+    h1 { font-size: 1.5em; }
+    h2 { font-size: 1.3em; }
+    h3 { font-size: 1.1em; }
+    p, .menu-item, .nav-link { font-size: 12px; }
+
+    .footer-links {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    /* Leaderboard Specific Responsive */
+    .dashboard-header h1 {
+        font-size: 1.3em; /* Already set by general h1 */
+    }
+    .dashboard-subtitle {
+        font-size: 0.7em;
+    }
+    .content-container {
+        padding: 1rem;
+    }
+    .search-container {
+        margin-bottom: 1rem;
+    }
+    .search-bar, .search-button {
+        padding: 0.7rem;
+        font-size: 14px;
+    }
+    .search-button {
+        padding: 0.7rem 1rem;
+    }
+    .leaderboard-table th, .leaderboard-table td {
+        padding: 0.6rem;
+        font-size: 0.7em;
+    }
+    .student-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .student-info img {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    .page-btn, #pageInfo {
+        font-size: 0.7em;
+        padding: 6px 10px;
+    }
+} 
